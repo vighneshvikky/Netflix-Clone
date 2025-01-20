@@ -1,3 +1,28 @@
-<app-header [userImg]="userProfileImg"/>
+<app-header [userImg]="userProfileImg" />
 
-<app-banner/>
+<app-banner [bannerTitle]="(bannerDetail$ | async)?.original_title" [bannerOverview]="(bannerDetail$ | async)?.overview" [key]="(bannerVideo$ | async).results[0].key"/>
+<app-movie-carousal
+  [videoContents]="popularMovies"
+  [title]="'Popular Movies'"
+/>
+
+<app-movie-carousal
+  [videoContents]="popularMovies"
+  [title]="'Trending TV shows'"
+/>
+<app-movie-carousal
+  [videoContents]="popularMovies"
+  [title]="'Now Playing Movies'"
+/>
+<app-movie-carousal
+  [videoContents]="popularMovies"
+  [title]="'Popular Movies'"
+/>
+<app-movie-carousal
+  [videoContents]="popularMovies"
+  [title]="'Top Rated Movies'"
+/>
+<app-movie-carousal
+  [videoContents]="popularMovies"
+  [title]="'Upcoming Movies'"
+/>
