@@ -11,7 +11,7 @@ const options = {
   },
   headers: {
     accept: 'application/json',
-    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3MjNiM2ExNWQ2MDA3YjQ1MDMyMTdkZWQ1YThlMjIxNyIsIm5iZiI6MTczNjU4MDY2MS44NSwic3ViIjoiNjc4MjFlMzVhYmFiYmJhMDQwYmIxM2VkIiwic2NvcGVzIjpbImFwaV9yZWFkIl0sInZlcnNpb24iOjF9.HbcXEpVxgrZTDH8LWNSG8DWZo1Nuxj31q9mbe1m1yAY'
+    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmZTQ3YTM1NTA2NTM1YTA4ZmU1MjQ2NzA1NTczYmQyYyIsIm5iZiI6MTczNzcxODY4OS45NDIwMDAyLCJzdWIiOiI2NzkzN2JhMTU1OWUyZDk3NGI0ODM2NGEiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.4FXv_nXoGZ7NVgENmPQlDGZj4umYg0LWLm-KPJhDjL0'
   }
 }
 
@@ -20,45 +20,46 @@ const options = {
 })
 export class MovieService {
 
-  http = inject(HttpClient);
+  httpClient = inject(HttpClient);
 
   getMovies() {
-    return this.http.get<any>('https://api.themoviedb.org/3/movie/popular?language=en-US&page=1', options)
+    return this.httpClient.get<any>('https://api.themoviedb.org/3/discover/movie', options)
   }
 
-   getTvShows() {
-    return this.http.get('https://api.themoviedb.org/3/movie/popular?language=en-US&page=1', options)
+  getTvShows() {
+    return this.httpClient.get('https://api.themoviedb.org/3/discover/tv', options)
   }
 
-  getRatedMovies() {
-    return this.http.get('https://api.themoviedb.org/3/movie/popular?language=en-US&page=1', options)
-  }
+  // getRatedMovies() {
+  //   return this.httpClient.get('https://api.themoviedb.org/3/guest_session/guest_session_id/rated/movies', options)
+  // }
+
 
   getBannerImage(id: number) {
-    return this.http.get(`https://api.themoviedb.org/3/movie/${id}/images`, options)
+    return this.httpClient.get(`https://api.themoviedb.org/3/movie/${id}/images`, options)
   }
 
   getBannerVideo(id: number) {
-    return this.http.get(`https://api.themoviedb.org/3/movie/${id}/videos`, options);
+    return this.httpClient.get(`https://api.themoviedb.org/3/movie/${id}/videos`, options);
   }
 
-  getBannerDetail(id: number) {
-    return this.http.get(`https://api.themoviedb.org/3/movie/${id}`, options);
+  getBannerDetail(id: number) {    
+    return this.httpClient.get(`https://api.themoviedb.org/3/movie/${id}`, options);
   }
 
   getNowPlayingMovies() {
-    return this.http.get('https://api.themoviedb.org/3/movie/popular?language=en-US&page=1', options)
+    return this.httpClient.get('https://api.themoviedb.org/3/movie/now_playing', options)
   }
 
   getPopularMovies() {
-    return this.http.get('https://api.themoviedb.org/3/movie/popular?language=en-US&page=1', options)
+    return this.httpClient.get('https://api.themoviedb.org/3/movie/popular', options)
   }
 
   getTopRated() {
-    return this.http.get('https://api.themoviedb.org/3/movie/popular?language=en-US&page=1', options)
+    return this.httpClient.get('https://api.themoviedb.org/3/movie/top_rated', options)
   }
 
   getUpcomingMovies() {
-    return this.http.get('https://api.themoviedb.org/3/movie/popular?language=en-US&page=1', options)
+    return this.httpClient.get('https://api.themoviedb.org/3/movie/upcoming', options)
   }
 }

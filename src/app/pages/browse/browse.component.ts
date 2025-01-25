@@ -38,7 +38,7 @@ upcomingMovies: IVideoContent[] = [];
 sources = [
   this.movieService.getMovies(),
   this.movieService.getTvShows(),
-  this.movieService.getRatedMovies(),
+  // this.movieService.getRatedMovies(),
   this.movieService.getNowPlayingMovies(),
   this.movieService.getUpcomingMovies(),
   this.movieService.getPopularMovies(),
@@ -48,10 +48,10 @@ sources = [
 ngOnInit(): void {
   forkJoin(this.sources)
   .pipe(
-    map(([movies, tvShows, ratedMovies, nowPlaying, upcoming, popular, topRated])=>{
-      this.bannerDetail$ = this.movieService.getBannerDetail(movies.results[1].id);
-      this.bannerVideo$ = this.movieService.getBannerVideo(movies.results[1].id);
-      return {movies, tvShows, ratedMovies, nowPlaying, upcoming, popular, topRated}
+    map(([movies, tvShows, ratedMovies, nowPlaying, upcoming, popular])=>{
+      this.bannerDetail$ = this.movieService.getBannerDetail(movies.results[0].id);
+      this.bannerVideo$ = this.movieService.getBannerVideo(movies.results[0].id);
+      return {movies, tvShows, ratedMovies, nowPlaying, upcoming, popular}
     })
   ).subscribe((res:any)=>{
     console.log(res)
@@ -61,11 +61,16 @@ ngOnInit(): void {
     this.nowPlayingMovies = res.nowPlaying.results as IVideoContent[];
     this.upcomingMovies = res.upcoming.results as IVideoContent[];
     this.popularMovies = res.popular.results as IVideoContent[];
-    this.topRatedMovies = res.topRated.results as IVideoContent[];
-   
+     this.getMovieKey()
   })
 }
 
+getMovieKey() {
+  this.movieService.getBannerVideo(this.movies[0].id)
+    .subscribe(res => {
+      console.log(res);
+    })
+}
 signOut(){
   sessionStorage.removeItem("loggedInUser")
   this.auth.signOut();

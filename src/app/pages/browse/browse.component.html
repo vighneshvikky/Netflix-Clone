@@ -1,17 +1,17 @@
 <app-header [userImg]="userProfileImg" />
 
-<app-banner [bannerTitle]="(bannerDetail$ | async)?.original_title" [bannerOverview]="(bannerDetail$ | async)?.overview" [key]="(bannerVideo$ | async).results[0].key"/>
+<app-banner [bannerTitle]="(bannerDetail$ | async)?.original_title" [bannerOverview]="(bannerDetail$ | async)?.overview" [key]="(bannerVideo$ | async)"/>
 <app-movie-carousal
-  [videoContents]="popularMovies"
+  [videoContents]="movies"
   [title]="'Popular Movies'"
 />
 
 <app-movie-carousal
-  [videoContents]="popularMovies"
+  [videoContents]="tvShows"
   [title]="'Trending TV shows'"
 />
 <app-movie-carousal
-  [videoContents]="popularMovies"
+  [videoContents]="nowPlayingMovies"
   [title]="'Now Playing Movies'"
 />
 <app-movie-carousal
@@ -19,10 +19,7 @@
   [title]="'Popular Movies'"
 />
 <app-movie-carousal
-  [videoContents]="popularMovies"
+  [videoContents]="upcomingMovies"
   [title]="'Top Rated Movies'"
 />
-<app-movie-carousal
-  [videoContents]="popularMovies"
-  [title]="'Upcoming Movies'"
-/>
+
